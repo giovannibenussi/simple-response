@@ -24,7 +24,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Example of how to create a success response object:
+
+```ruby
+response = SimpleResponse.success(user_id: 1)
+
+response.success? # true
+response.user_id  # 1
+response.failure? # false
+```
 
 ## Development
 
