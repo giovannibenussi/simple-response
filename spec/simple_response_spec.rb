@@ -7,11 +7,27 @@ RSpec.describe SimpleResponse do
     it 'creates a success response' do
       expect(SimpleResponse.success).to be_success
     end
+
+    context 'with additional attributes' do
+      it 'associates the provided attributes with the response' do
+        response = SimpleResponse.success(attribute: 1)
+
+        expect(response.attribute).to eq(1)
+      end
+    end
   end
 
   describe '.failure' do
     it 'creates a failure response' do
       expect(SimpleResponse.failure).to be_failure
+    end
+
+    context 'with additional attributes' do
+      it 'associates the provided attributes with the response' do
+        response = SimpleResponse.failure(attribute: 1)
+
+        expect(response.attribute).to eq(1)
+      end
     end
   end
 
@@ -37,6 +53,14 @@ RSpec.describe SimpleResponse do
 
       it 'returns a non success response' do
         is_expected.not_to be_success
+      end
+    end
+
+    context 'with additional attributes' do
+      it 'associates the provided attributes with the response' do
+        response = SimpleResponse.new(success: true, attribute: 1)
+
+        expect(response.attribute).to eq(1)
       end
     end
   end
