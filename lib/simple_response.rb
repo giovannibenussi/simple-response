@@ -12,7 +12,7 @@ module SimpleResponse
     new(success: true, **attributes)
   end
 
-  def self.failure
-    new(success: false)
+  def self.failure(attributes)
+    new(success: false, **attributes)
   end
 end

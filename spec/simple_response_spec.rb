@@ -21,6 +21,14 @@ RSpec.describe SimpleResponse do
     it 'creates a failure response' do
       expect(SimpleResponse.failure).to be_failure
     end
+
+    context 'with additional attributes' do
+      it 'associates the provided attributes with the response' do
+        response = SimpleResponse.failure(attribute: 1)
+
+        expect(response.attribute).to eq(1)
+      end
+    end
   end
 
   describe '.new' do
