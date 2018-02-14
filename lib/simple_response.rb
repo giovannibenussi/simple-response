@@ -9,4 +9,8 @@ module SimpleResponse
   def self.success
     new(success: true)
   end
+
+  def self.failure
+    new(success: false)
+  end
 end

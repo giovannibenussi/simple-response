@@ -9,6 +9,12 @@ RSpec.describe SimpleResponse do
     end
   end
 
+  describe '.failure' do
+    it 'creates a failure response' do
+      expect(SimpleResponse.failure).to be_failure
+    end
+  end
+
   describe '.new' do
     context 'without a success param' do
       subject { SimpleResponse.new(success: true) }
@@ -46,6 +52,42 @@ RSpec.describe SimpleResponse do
 
     it 'assigns the provided parameter to the attribute' do
       expect(response.attribute).to eq(1)
+    end
+  end
+
+  describe '#success?' do
+    context 'with a success response' do
+      it 'returns true' do
+        result = SimpleResponse.new(success: true)
+
+        expect(result.success?).to eq(true)
+      end
+    end
+
+    context 'with a failure response' do
+      it 'returns false' do
+        result = SimpleResponse.new(success: false)
+
+        expect(result.success?).to eq(false)
+      end
+    end
+  end
+
+  describe '#failure?' do
+    context 'with a success response' do
+      it 'returns true' do
+        result = SimpleResponse.new(success: true)
+
+        expect(result.failure?).to eq(false)
+      end
+    end
+
+    context 'with a failure response' do
+      it 'returns false' do
+        result = SimpleResponse.new(success: false)
+
+        expect(result.failure?).to eq(true)
+      end
     end
   end
 end
