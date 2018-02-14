@@ -39,6 +39,14 @@ RSpec.describe SimpleResponse do
         is_expected.not_to be_success
       end
     end
+
+    context 'with additional attributes' do
+      it 'associates the provided attributes with the response' do
+        response = SimpleResponse.new(success: true, attribute: 1)
+
+        expect(response.attribute).to eq(1)
+      end
+    end
   end
 
   describe 'attribute=' do
