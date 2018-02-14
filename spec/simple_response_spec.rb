@@ -7,6 +7,14 @@ RSpec.describe SimpleResponse do
     it 'creates a success response' do
       expect(SimpleResponse.success).to be_success
     end
+
+    context 'with additional attributes' do
+      it 'associates the provided attributes with the response' do
+        response = SimpleResponse.success(attribute: 1)
+
+        expect(response.attribute).to eq(1)
+      end
+    end
   end
 
   describe '.failure' do
