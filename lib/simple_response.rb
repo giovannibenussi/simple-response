@@ -2,7 +2,11 @@ require "simple_response/version"
 require "simple_response/response"
 
 module SimpleResponse
+  def self.new(success: true)
+    SimpleResponse::Response.new(success: success)
+  end
+
   def self.success
-    SimpleResponse::Response.new(success: true)
+    new(success: true)
   end
 end
