@@ -10,5 +10,9 @@ module SimpleResponse
     def success?
       success
     end
+
+    def failure?
+      !success?
+    end
   end
 end
