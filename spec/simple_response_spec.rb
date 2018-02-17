@@ -162,4 +162,13 @@ RSpec.describe SimpleResponse do
       end
     end
   end
+
+  describe '.keys' do
+    let(:response) { SimpleResponse.success(name: 'Giovanni', last_name: 'Benussi') }
+    subject { response.keys }
+
+    it 'returns the attributes assigned' do
+      is_expected.to include(:success, :name, :last_name)
+    end
+  end
 end

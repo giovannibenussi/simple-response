@@ -16,5 +16,9 @@ module SimpleResponse
     def failure?
       !success?
     end
+
+    def keys
+      to_h.keys
+    end
   end
 end
