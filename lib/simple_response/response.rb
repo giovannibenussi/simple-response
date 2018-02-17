@@ -17,7 +17,7 @@ module SimpleResponse
 
     def method_missing(name, *args, &block)
       if query_method?(name)
-        self.send(name[0...-1])
+        send(name[0...-1])
       else
         super
       end
