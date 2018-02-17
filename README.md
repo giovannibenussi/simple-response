@@ -28,8 +28,8 @@ class ThirdPartyAPI
   def get('posts')
     # call third party api...
     SimpleResponse.success(posts: posts, retrieval_time: retrieval_time)
-  rescue ThirdPartyAPIException => e
-    SimpleResponse.failure(error_message: e.message)
+  rescue ThirdPartyAPI::CredentialsError => e
+    SimpleResponse.failure(error_message: 'invalid credentials')
   end
 end
 ```
