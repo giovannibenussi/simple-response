@@ -1,6 +1,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/54e7c14cd8f10bd26aa5/maintainability)](https://codeclimate.com/github/giovannibenussi/simple-response/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/54e7c14cd8f10bd26aa5/test_coverage)](https://codeclimate.com/github/giovannibenussi/simple-response/test_coverage)
 <a target="_blank" href="https://badge.fury.io/rb/simple_response"><img src="https://badge.fury.io/rb/simple_response.svg" alt="Gem Version" height="18"></a>
+[![Build Status](https://travis-ci.org/giovannibenussi/simple-response.svg?branch=master)](https://travis-ci.org/giovannibenussi/simple-response)
 
 # SimpleResponse
 
