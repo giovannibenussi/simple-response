@@ -8,11 +8,11 @@ module SimpleResponse
     end
   end
 
-  def self.success(attributes)
+  def self.success(attributes = {})
     new(success: true, **attributes)
   end
 
-  def self.failure(attributes)
+  def self.failure(attributes = {})
     new(success: false, **attributes)
   end
 end
