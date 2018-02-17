@@ -89,6 +89,10 @@ RSpec.describe SimpleResponse do
         expect(response).to respond_to(:attribute)
       end
 
+      it 'does not respond to query methods' do
+        expect(response).not_to respond_to(:attribute?)
+      end
+
       it 'assigns the provided parameter to the attribute' do
         expect(response.attribute).to eq(1)
       end

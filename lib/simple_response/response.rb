@@ -30,7 +30,15 @@ module SimpleResponse
     private
 
     def existing_query_method?(name)
-      name[-1] == '?' && respond_to?(name[0...-1])
+      return false unless query_method?(name)
+      return false unless respond_to?(name[0...-1])
+
+      attribute_class = send(name[0...-1]).class
+      attribute_class == TrueClass || attribute_class == FalseClass
+    end
+
+    def query_method?(name)
+      name[-1] == '?'
     end
   end
 end
