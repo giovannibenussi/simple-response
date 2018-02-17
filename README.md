@@ -2,9 +2,43 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/54e7c14cd8f10bd26aa5/test_coverage)](https://codeclimate.com/github/giovannibenussi/simple-response/test_coverage)
 # SimpleResponse
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/simple_response`. To experiment with that code, run `bin/console` for an interactive prompt.
+SimpleResponse is a lightweight gem that will allow you to create Response Objects in an easy but robust way.
 
-TODO: Delete this and the text above, and describe your gem
+Basically, a Response Object is an object that improves the communication between the functions of your application. By using them, you will be able to reduce the number of bugs and its hunt easier than alternative ways like return boolean or string values.
+
+<!-- In a Response Object you have two types of responses: success and failures. Also, you could associate any data that you want with the Response Object in case you need to provide extra data. -->
+In a Response Object you can have two types of responses (success and failure) and any custom associated data that you want.
+
+Following is a simple code that uses SimpleResponse to improve both its readability and flow control.
+
+```ruby
+response = ThirdPartyAPI.get('posts')
+if response.success?
+  puts "Post retrieval succeeds in #{response.retrieval_time}"
+  puts "We retrieve #{response.posts.count} posts."
+else
+  puts "Error retrieving posts: #{response.error_message}"
+end
+```
+
+To implement this, you could write something like this using SimpleResponse gem:
+
+```ruby
+class ThirdPartyAPI
+  def get('posts')
+    # call third party api...
+    SimpleResponse.success(posts: posts, retrieval_time: retrieval_time)
+  rescue ThirdPartyAPIException => e
+    SimpleResponse.failure(error_message: e.message)
+  end
+end
+```
+
+## Why?
+
+By using Response Objects you will be able to reduce the number and difficulty of your bugs because you will be easing the communication between your application layers that is where bugs used to come from.
+
+SimpleResponse's proposal is a lightweight [syntactic sugar for your response objects](http://rubyonrails.org/doctrine/#beautiful-code).
 
 ## Installation
 
@@ -24,7 +58,7 @@ Or install it yourself as:
 
 ## Usage
 
-Example of how to create a success response object:
+Create a success response object:
 
 ```ruby
 response = SimpleResponse.success(user_id: 1)
@@ -34,20 +68,41 @@ response.user_id  # 1
 response.failure? # false
 ```
 
-## Development
+Create a failure response object:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+response = SimpleResponse.failure(user_id: 1)
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+response.success? # false
+response.user_id  # 1
+response.failure? # true
+```
+
+You also have automatically query methods on boolean attributes:
+
+```
+response.works = true
+response.works  # true
+response.works? # true
+```
+
+To define dynamically the response status you could call directly the method new on SimpleResponse's class:
+
+```ruby
+SimpleResponse.new(success: true)
+
+# with custom data:
+SimpleResponse.new(success: true, user_id: 1)
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/simple_response. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/giovannibenussi/simple_response. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Code of Conduct
+<!-- ## Code of Conduct
 
-Everyone interacting in the SimpleResponse project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/simple_response/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the SimpleResponse project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/giovannibenussi/simple_response/blob/master/CODE_OF_CONDUCT.md). -->
