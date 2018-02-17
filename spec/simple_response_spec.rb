@@ -105,7 +105,7 @@ RSpec.describe SimpleResponse do
         expect(response).to respond_to(:attribute?)
       end
 
-      it 'generates a query method with the name of the attribute that returns the attribute value' do
+      it 'generates a query method for the provided attribute' do
         expect(response.attribute?).to eq(true)
       end
     end
