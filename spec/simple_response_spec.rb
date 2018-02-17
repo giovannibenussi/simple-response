@@ -111,6 +111,18 @@ RSpec.describe SimpleResponse do
     end
   end
 
+  describe 'querying unexisting methods' do
+    let(:response) { SimpleResponse.new(success: true) }
+
+    it 'does not respond to unexisting methods' do
+      expect(response).not_to respond_to(:attribute)
+    end
+
+    it 'does not respond to query methods' do
+      expect(response).not_to respond_to(:attribute?)
+    end
+  end
+
   describe '#success?' do
     context 'with a success response' do
       it 'returns true' do

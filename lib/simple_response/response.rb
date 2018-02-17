@@ -16,7 +16,7 @@ module SimpleResponse
     end
 
     def method_missing(name, *args, &block)
-      if query_method?(name)
+      if existing_query_method?(name)
         send(name[0...-1])
       else
         super
@@ -24,13 +24,13 @@ module SimpleResponse
     end
 
     def respond_to_missing?(name, include_private = false)
-      query_method?(name)
+      existing_query_method?(name)
     end
 
     private
 
-    def query_method?(name)
-      name[-1] == '?'
+    def existing_query_method?(name)
+      name[-1] == '?' && respond_to?(name[0...-1])
     end
   end
 end
