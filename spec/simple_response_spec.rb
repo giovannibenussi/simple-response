@@ -57,10 +57,24 @@ RSpec.describe SimpleResponse do
     end
 
     context 'with additional attributes' do
-      it 'associates the provided attributes with the response' do
-        response = SimpleResponse.new(success: true, attribute: 1)
+      context 'when the attribute is boolean' do
+        let(:response) { SimpleResponse.new(success: true, attribute: true) }
 
-        expect(response.attribute).to eq(1)
+        it 'associates the provided attributes with the response' do
+          expect(response.attribute).to eq(true)
+        end
+
+        it 'generated a query method for the provided attribute' do
+          expect(response.attribute?).to eq(true)
+        end
+      end
+
+      context 'when the attribute is not boolean' do
+        it 'associates the provided attributes with the response' do
+          response = SimpleResponse.new(success: true, attribute: 1)
+
+          expect(response.attribute).to eq(1)
+        end
       end
     end
   end
@@ -68,14 +82,32 @@ RSpec.describe SimpleResponse do
   describe 'attribute=' do
     let(:response) { SimpleResponse.new }
 
-    before { response.attribute = 1 }
+    context 'when the response is not boolean' do
+      before { response.attribute = 1 }
 
-    it 'generates a method with the attribute name' do
-      expect(response).to respond_to(:attribute)
+      it 'generates a method with the name of the attribute' do
+        expect(response).to respond_to(:attribute)
+      end
+
+      it 'assigns the provided parameter to the attribute' do
+        expect(response.attribute).to eq(1)
+      end
     end
 
-    it 'assigns the provided parameter to the attribute' do
-      expect(response.attribute).to eq(1)
+    context 'when the response is boolean' do
+      before { response.attribute = true }
+
+      it 'generates a method with the name of the attribute' do
+        expect(response).to respond_to(:attribute)
+      end
+
+      it 'generates a query method with the name of the attribute' do
+        expect(response).to respond_to(:attribute?)
+      end
+
+      it 'generates a query method with the name of the attribute that returns the attribute value' do
+        expect(response.attribute?).to eq(true)
+      end
     end
   end
 
