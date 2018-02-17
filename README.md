@@ -38,7 +38,7 @@ end
 
 By using Response Objects you will be able to reduce the number and difficulty of your bugs because you will be easing the communication between your application layers that is where bugs used to come from.
 
-SimpleResponse's proposal is a lightweight [syntactic sugar for your response objects](http://rubyonrails.org/doctrine/#beautiful-code).
+SimpleResponse's proposal is a lightweight <a href="http://rubyonrails.org/doctrine/#beautiful-code" target="_blank">syntactic sugar for your response objects</a>.
 
 ## Installation
 
