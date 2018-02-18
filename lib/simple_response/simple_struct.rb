@@ -17,7 +17,7 @@ module SimpleResponse
     end
 
     def existing_attribute?(name)
-      @attributes.has_key?(name.to_sym)
+      @attributes.key?(name.to_sym)
     end
 
     def respond_to_missing?(name, include_private = false)
