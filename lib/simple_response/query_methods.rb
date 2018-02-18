@@ -2,9 +2,9 @@ module SimpleResponse
   module QueryMethods
     def existing_query_method?(name)
       return false unless query_method?(name)
-      return false unless respond_to?(name[0...-1])
+      return false unless respond_to?(name[0...-1].to_sym)
 
-      attribute_class = send(name[0...-1]).class
+      attribute_class = @attributes[name[0...-1].to_sym].class
       attribute_class == TrueClass || attribute_class == FalseClass
     end
 
@@ -15,7 +15,7 @@ module SimpleResponse
     end
 
     def query_method(name)
-      send(name[0...-1])
+      @attributes[name[0...-1].to_sym]
     end
   end
 end
