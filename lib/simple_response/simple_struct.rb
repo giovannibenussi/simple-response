@@ -1,10 +1,18 @@
 module SimpleResponse
+  # SimpleStruct class is an OpenStruct-like class that allows
+  # to assign and read arbitrary values.
   class SimpleStruct
     include SimpleResponse::QueryMethods
 
-    def initialize(*args)
-      @attributes = {}
+    def initialize(**args)
+      @attributes = args.dup
     end
+
+    def keys
+      @attributes.keys
+    end
+
+    private
 
     def method_missing(name, *args, &block)
       if existing_query_method?(name)
@@ -26,10 +34,6 @@ module SimpleResponse
 
     def write_method?(name)
       name[-1] == '='
-    end
-
-    def keys
-      @attributes.keys
     end
   end
 end

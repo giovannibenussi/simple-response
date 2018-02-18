@@ -70,9 +70,13 @@ RSpec.describe SimpleResponse do
       end
 
       context 'when the attribute is not boolean' do
-        it 'associates the provided attributes with the response' do
-          response = SimpleResponse.new(success: true, attribute: 1)
+        let(:response) { SimpleResponse.new(success: true, attribute: 1) }
 
+        it 'responds to the provided attributes' do
+          expect(response).to respond_to(:attribute)
+        end
+
+        it 'associates the provided attributes with the response' do
           expect(response.attribute).to eq(1)
         end
       end

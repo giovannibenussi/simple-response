@@ -3,8 +3,8 @@ module SimpleResponse
   require 'simple_response/simple_struct'
 
   class Response < SimpleStruct
-    def initialize(success:)
-      super
+    def initialize(success:, **attributes)
+      super(attributes)
       @success = success
     end
 
