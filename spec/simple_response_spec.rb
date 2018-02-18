@@ -113,6 +113,26 @@ RSpec.describe SimpleResponse do
         expect(response.attribute?).to eq(true)
       end
     end
+
+    context 'when the response is an array' do
+      let(:response) { SimpleResponse.new }
+
+      before { response.attribute = [1, 2, 3] }
+
+      it 'assigns the attributes correctly' do
+        expect(response.attribute).to eq([1, 2, 3])
+      end
+    end
+
+    context 'when the response is an array of arrays' do
+      let(:response) { SimpleResponse.new }
+
+      before { response.attribute = [[1], [1, 2, 3]] }
+
+      it 'assigns the attributes correctly' do
+        expect(response.attribute).to eq([[1], [1, 2, 3]])
+      end
+    end
   end
 
   describe 'querying unexisting methods' do

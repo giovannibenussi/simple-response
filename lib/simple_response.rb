@@ -4,7 +4,7 @@ require "simple_response/response"
 module SimpleResponse
   def self.new(success: true, **attributes)
     SimpleResponse::Response.new(success: success).tap do |response|
-      attributes.each { |k, v| response[k] = v }
+      attributes.each { |k, v| response.send("#{k}=", v) }
     end
   end
 
