@@ -15,12 +15,12 @@ module SimpleResponse
     private
 
     def method_missing(name, *args, &block)
-      if existing_query_method?(name)
+      if existing_attribute?(name)
+        @attributes[name.to_sym]
+      elsif existing_query_method?(name)
         query_method(name)
       elsif write_method?(name)
         @attributes[name[0...-1].to_sym] = args.first
-      elsif existing_attribute?(name)
-        @attributes[name.to_sym]
       else
         super
       end
