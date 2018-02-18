@@ -8,6 +8,12 @@ module SimpleResponse
       @attributes = args.dup
     end
 
+    def keys
+      @attributes.keys
+    end
+
+    private
+
     def method_missing(name, *args, &block)
       if existing_query_method?(name)
         query_method(name)
@@ -28,10 +34,6 @@ module SimpleResponse
 
     def write_method?(name)
       name[-1] == '='
-    end
-
-    def keys
-      @attributes.keys
     end
   end
 end
