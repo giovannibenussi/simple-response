@@ -146,6 +146,10 @@ RSpec.describe SimpleResponse do
       expect(response).not_to respond_to(:attribute)
     end
 
+    it 'raises an error when an unexisting attribute or method is called' do
+      expect { response.unexisting_attribute }.to raise_error(NoMethodError)
+    end
+
     it 'does not respond to query methods' do
       expect(response).not_to respond_to(:attribute?)
     end
