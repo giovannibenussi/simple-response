@@ -1,5 +1,4 @@
 module SimpleResponse
-  require 'ostruct'
   require 'simple_response/query_methods'
   require 'simple_response/simple_struct'
 
