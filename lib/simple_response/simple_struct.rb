@@ -1,4 +1,6 @@
 module SimpleResponse
+  # SimpleStruct class is an OpenStruct-like class that allows
+  # to assign and read arbitrary values.
   class SimpleStruct
     include SimpleResponse::QueryMethods
 
