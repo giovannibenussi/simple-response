@@ -2,8 +2,8 @@ module SimpleResponse
   class SimpleStruct
     include SimpleResponse::QueryMethods
 
-    def initialize(*args)
-      @attributes = {}
+    def initialize(**args)
+      @attributes = args.dup
     end
 
     def method_missing(name, *args, &block)
