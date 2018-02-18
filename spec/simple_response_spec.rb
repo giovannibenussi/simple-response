@@ -188,7 +188,7 @@ RSpec.describe SimpleResponse do
     subject { response.keys }
 
     it 'returns the attributes assigned' do
-      is_expected.to include(:success, :name, :last_name)
+      is_expected.to contain_exactly(:name, :last_name)
     end
   end
 end
