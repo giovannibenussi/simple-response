@@ -6,11 +6,11 @@ module SimpleResponse
   class Response < SimpleStruct
     def initialize(success:)
       super
-      self.success = success
+      @success = success
     end
 
     def success?
-      success
+      @success
     end
 
     def failure?
