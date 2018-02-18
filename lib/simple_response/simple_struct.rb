@@ -13,8 +13,6 @@ module SimpleResponse
         @attributes[name[0...-1].to_sym] = args.first
       elsif existing_attribute?(name)
         @attributes[name.to_sym]
-      else
-        super
       end
     end
 
